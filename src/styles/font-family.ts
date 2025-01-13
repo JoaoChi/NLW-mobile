@@ -1,6 +1,6 @@
 export const fontFamily = {
-    bold: "Roboto-Bold, Arial-Bold, sans-serif",
-    medium: "Roboto-Medium, Arial-Medium, sans-serif",
-    regular: "Roboto-Regular, Arial, sans-serif",
-    semibold: "Roboto-SemiBold, Arial-SemiBold, sans-serif"
+    bold: "Roboto, Arial, sans-serif",
+    medium: "Roboto, Arial, sans-serif",
+    regular: "Roboto, Arial, sans-serif",
+    semibold: "Roboto, Arial, sans-serif"
 };

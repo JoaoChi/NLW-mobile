@@ -2,12 +2,14 @@ import { View, Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { Welcome } from "@/components/welcome";
 import { Steps } from "@/components/steps";
+import { Step } from "@/components/step";
 
 export default function Index(){
     return(
         <View style={styles.container}>
             <Welcome/>
             <Steps/>
+
         </View>
     )
 }
