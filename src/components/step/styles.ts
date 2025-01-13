@@ -12,7 +12,7 @@ export const s = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        fontFamily: fontFamily.semibold,
+        fontFamily: fontFamily.semiBold,
         color: colors.gray[600],
     },
     description: {
