@@ -8,6 +8,8 @@ import { useFonts,
     Rubik_700Bold
 } from "@expo-google-fonts/rubik"
 
+import { Loading } from "@/components/loading"
+
 export default function Layout(){
     const [fontsLoaded] = useFonts({
         Rubik_600SemiBold, 
@@ -17,7 +19,7 @@ export default function Layout(){
     })
 
     if(!fontsLoaded) {
-        return 
+        return <Loading/> 
     }
 
     return <Stack 
