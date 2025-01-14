@@ -1,4 +1,4 @@
-import { View, Text, Alert } from "react-native";
+import { View, Alert } from "react-native";
 import { api } from "@/services/api";
 import { useEffect, useState } from "react";
 import { Categories, CategoriesProps } from "@/components/categories";
