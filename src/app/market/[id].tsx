@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Loading } from "@/components/loading";
 import { Cover } from "@/components/market/cover";
 import { PropsDetails, Details } from "@/components/market/details";
+import { Coupon } from "@/components/market/coupon";
 
 export default function Market(){
 
@@ -47,6 +48,7 @@ export default function Market(){
         <View style={{ flex: 1 }}>
             <Cover uri={data?.cover}></Cover>
             <Details data={data} />
+            <Coupon code="FM4345T6"/>
         </View>
     )
 }
