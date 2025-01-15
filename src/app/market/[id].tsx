@@ -1,11 +1,18 @@
 import { View, Text, Alert } from "react-native";
-import { router, useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams, Redirect } from "expo-router";
 import { api } from "@/services/api";
 import { useEffect, useState } from "react";
 import { Loading } from "@/components/loading";
+import { Cover } from "@/components/market/cover";
+import { PropsDetails } from "@/components/market/details";
 
 export default function Market(){
-    const [data, setData] = useState()
+
+    type DataProps = PropsDetails & {
+        cover: string
+    }
+
+    const [data, setData] = useState<DataProps>()
     const [isLoading, setIsLoading] = useState(true)
 
     const params = useLocalSearchParams<{ id: string }>()
@@ -32,9 +39,13 @@ export default function Market(){
         return <Loading/>
     }
 
+    if(!data){
+        return <Redirect href="/home"/>
+    }
+
     return (
-        <View style={{ flex: 1 , justifyContent: "center", alignItems: "center"}}>
-            
+        <View style={{ flex: 1 }}>
+            <Cover uri={data?.cover}></Cover>
         </View>
     )
 }
