@@ -4,7 +4,7 @@ import { api } from "@/services/api";
 import { useEffect, useState } from "react";
 import { Loading } from "@/components/loading";
 import { Cover } from "@/components/market/cover";
-import { PropsDetails } from "@/components/market/details";
+import { PropsDetails, Details } from "@/components/market/details";
 
 export default function Market(){
 
@@ -46,6 +46,7 @@ export default function Market(){
     return (
         <View style={{ flex: 1 }}>
             <Cover uri={data?.cover}></Cover>
+            <Details data={data} />
         </View>
     )
 }
