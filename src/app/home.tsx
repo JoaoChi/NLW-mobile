@@ -1,12 +1,17 @@
-import { View, Alert } from "react-native";
+import { View, Alert, Text } from "react-native";
 import { api } from "@/services/api";
+import { colors, fontFamily } from "@/styles/theme";
 import { useEffect, useState } from "react";
 import { Categories, CategoriesProps } from "@/components/categories";
 import { PlaceProps } from "@/components/place";
 import { Places } from "@/components/places";
-import MapView from "react-native-maps"
+import MapView, { Callout, Marker } from "react-native-maps"
+// import * as Location from 'expo-location';
 
-type MarketProps = PlaceProps
+type MarketProps = PlaceProps & {
+    latitude: number
+    longitude: number
+}
 
 const currentLocation = {
     latitude: -27.097801673004962,
@@ -43,7 +48,21 @@ export default function Home() {
         }
     }
 
+    // async function getCurrentLocation(){
+    //     try {
+    //         const { granted } = await Location.requestForegroundPermissionsAsync
+
+    //         if(granted){
+    //             const location = await Location.getCurrentPositionAsync
+    //             console.log(location)
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
     useEffect(() => {
+        // getCurrentLocation()
         fetchCategories()
     }, [])
 
@@ -62,7 +81,49 @@ export default function Home() {
                         latitudeDelta: 0.005,
                         longitudeDelta: 0.005,
                     }
-                } />
+                } >
+                <Marker
+                    identifier="current"
+                    coordinate={{
+                        latitude: currentLocation.latitude,
+                        longitude: currentLocation.longitude
+                    }}
+                    icon={require("@/assets/pin.png")}
+                />
+
+                {
+                    markets.map((item) => (
+                        <Marker
+                            key={item.id}
+                            identifier={item.id}
+                            coordinate={{
+                                latitude: item.latitude,
+                                longitude: item.longitude
+                            }}
+                            icon={require("@/assets/location.png")}
+                        >
+                            <Callout>
+                                <View>
+                                    <Text
+                                        style={{
+                                            fontSize: 14,
+                                            color: colors.gray[600],
+                                            fontFamily: fontFamily.medium
+                                        }}
+                                    >{item.name}</Text>
+                                    <Text
+                                        style={{
+                                            fontSize: 12,
+                                            color: colors.gray[600],
+                                            fontFamily: fontFamily.regular
+                                        }}
+                                    >{item.address}</Text>
+                                </View>
+                            </Callout>
+                        </Marker>
+                    ))
+                }
+            </MapView>
             <Places data={markets} />
         </View>
     )
